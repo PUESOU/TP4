@@ -6,4 +6,9 @@
     <string name="titre_section0">Minéraux</string>
     <string name="titre_section1">Végétaux</string>
     <string name="titre_section2">Animaux</string>
+    <string name="titre_section3">Saisons</string>
+    <string name="titre_section4">Printemps</string>
+    <string name="titre_section5">Été</string>
+    <string name="titre_section6">Automne</string>
+    <string name="titre_section7">Hiver</string>
 </resources>

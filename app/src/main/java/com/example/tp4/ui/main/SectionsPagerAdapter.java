@@ -33,73 +33,55 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        // return PlaceholderFragment.newInstance(position + 1);
-
-        switch(position) {
-            case 0: return NatureFragment.newInstance(0, mContext.getString(R.string.titre_section0));
-            case 1: return NatureFragment.newInstance(1, mContext.getString(R.string.titre_section1));
-            case 2: return NatureFragment.newInstance(2, mContext.getString(R.string.titre_section2));
-        }
-
-        return null;
+        return NatureFragment.newInstance(position, getTitre(position, mContext));
     }
 
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        // return mContext.getResources().getString(TAB_TITLES[position]);
-
         Locale l = Locale.getDefault();
-        String titre = "";
-        Drawable icone = null;
-
-        switch(position) {
-            case 0: {
-                titre = mContext.getString(R.string.titre_section0).toUpperCase(l);
-                icone = mContext.getResources().getDrawable(R.drawable.mineral);
-
-                break;
-            }
-            case 1: {
-                titre = mContext.getString(R.string.titre_section1).toUpperCase(l);
-                icone = mContext.getResources().getDrawable(R.drawable.vegetal);
-
-                break;
-            }
-            case 2: {
-                titre = mContext.getString(R.string.titre_section2).toUpperCase(l);
-                icone = mContext.getResources().getDrawable(R.drawable.animal);
-
-                break;
-            }
-        }
+        String titre = getTitre(position, mContext).toUpperCase(l);
+        Drawable icone = getIcone(position, mContext);
 
         SpannableString sb = new SpannableString(" " + titre);
         icone.setBounds(0, 0, icone.getIntrinsicWidth(), icone.getIntrinsicHeight());
         ImageSpan span = new ImageSpan(icone, ImageSpan.ALIGN_BASELINE);
         sb.setSpan(span, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-//                return super.getPageTitle(position);
         return sb;
     }
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
-        // return 2;
-
-        return 3;
+        return 8;
     }
 
-    public Drawable getIcone(int position) {
+    public static Drawable getIcone(int position, Context mContext) {
         switch(position) {
             case 0: return mContext.getResources().getDrawable(R.drawable.mineral);
             case 1: return mContext.getResources().getDrawable(R.drawable.vegetal);
             case 2: return mContext.getResources().getDrawable(R.drawable.animal);
+            case 4: return mContext.getResources().getDrawable(R.drawable.printemps);
+            case 5: return mContext.getResources().getDrawable(R.drawable.ete);
+            case 6: return mContext.getResources().getDrawable(R.drawable.automne);
+            case 7: return mContext.getResources().getDrawable(R.drawable.hiver);
         }
 
-        return null;
+        return mContext.getResources().getDrawable(R.drawable.non_image);
+    }
+
+    public static String getTitre(int position, Context mContext) {
+        switch(position) {
+            case 0: return mContext.getString(R.string.titre_section0);
+            case 1: return mContext.getString(R.string.titre_section1);
+            case 2: return mContext.getString(R.string.titre_section2);
+            case 3: return mContext.getString(R.string.titre_section3);
+            case 4: return mContext.getString(R.string.titre_section4);
+            case 5: return mContext.getString(R.string.titre_section5);
+            case 6: return mContext.getString(R.string.titre_section6);
+            case 7: return mContext.getString(R.string.titre_section7);
+        }
+
+        return "";
     }
 }
